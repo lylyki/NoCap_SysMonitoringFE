@@ -6,12 +6,12 @@ function ProcessesList(props) {
   return (
     <div className="List">
       <h4>Запущенные процессы</h4>
-        <ul>{props.processes/* .sort((a,b) => {
+        <ul>{props.processes.sort((a,b) => {
           if(a.cpu<b.cpu) return 1;
           if(a.cpu>b.cpu) return -1;
           return 0; 
-        }) */.slice(0, 10).map(process => {
-         return(<div><li>{process.name}{/*  {process.cpu} {process.memory} */}</li></div>)
+        }).slice(0, 10).map(process => {
+         return(<div><li>{process.name} {process.cpu ? process.cpu : ''} {process.memory ? process.memory : ''}</li></div>)
         })}</ul>
     </div>
   );
@@ -105,7 +105,7 @@ class App extends Component {
   }
   componentDidMount() {
    this.GetData();
-    setInterval(this.GetData, 1000);
+    setInterval(this.GetData, 200);
   }
   componentWillUnmount(){
     
